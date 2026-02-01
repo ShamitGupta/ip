@@ -4,8 +4,9 @@ public class Shamit {
     public static void main(String[] args) {
         greet();
         boolean isEnd = false; //this will be true when user types bye
+        String[] tasks = new String[10]; //initialised to a 10 length array first, will need to monitor while adding tasks
         String userInput = "";
-
+        int counter = 0; //totals the number of items added to the list
         while(!isEnd){
             Scanner obj = new Scanner(System.in);
             userInput = obj.nextLine();
@@ -15,7 +16,9 @@ public class Shamit {
                 bye();
             }
             else{
-                echo(userInput);
+                counter++; //increase the number of tasks
+                tasks = add(userInput,tasks,counter); //updating the task variable
+
 
             }
         }
@@ -32,9 +35,19 @@ public class Shamit {
         System.out.println("Bye, please come again!");
     }
 
-    public static void echo(String content){
-        System.out.println("-----------------------");
-        System.out.println(content);
-        System.out.println("-----------------------");
+    public static String[] add(String content, String[] tasks,int counter){
+        int size = tasks.length;
+//        if(counter > size){ //this means that the array is full, and we need to make a new bigger array
+//            String[] newArray = new String[size*2]; //creating twice the original size
+//            for(int )
+//        }
+
+        int index = counter - 1; //2nd item will be first index in the array
+        tasks[index] = content; //adding the task inside the array
+        for(int i = 0; i<counter;i++){
+            int number = i+1; //the list of numbers will be index+1. For eg, task 1 will be index 0
+            System.out.println("" + number + ": " + tasks[i]);
+        }
+        return tasks;
     }
 }
