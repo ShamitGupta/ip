@@ -14,12 +14,11 @@ public class Shamit {
             if(Objects.equals(userInput, "bye")){
                 isEnd = true;
                 bye();
-            }
-            else{
+            } else if (Objects.equals(userInput,"list")) {
+                tasks = display(tasks,counter);
+            } else{
                 counter++; //increase the number of tasks
                 tasks = add(userInput,tasks,counter); //updating the task variable
-
-
             }
         }
 
@@ -47,6 +46,11 @@ public class Shamit {
 
         int index = counter - 1; //2nd item will be first index in the array
         tasks[index] = content; //adding the task inside the array
+
+        tasks = display(tasks,counter);
+        return tasks;
+    }
+    public static String[] display(String[] tasks, int counter){
         for(int i = 0; i<counter;i++){
             int number = i+1; //the list of numbers will be index+1. For eg, task 1 will be index 0
             System.out.println("" + number + ": " + tasks[i]);
