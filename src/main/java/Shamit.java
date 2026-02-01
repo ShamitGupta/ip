@@ -45,7 +45,7 @@ public class Shamit {
         }
 
         int index = counter - 1; //2nd item will be first index in the array
-        tasks[index] = content; //adding the task inside the array
+        tasks[index] = content; //adding the task inside the array.
 
         tasks = display(tasks,counter);
         return tasks;
