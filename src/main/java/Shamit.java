@@ -13,11 +13,11 @@ public class Shamit {
 
             if(Objects.equals(userInput, "bye")){
                 isEnd = true;
-                bye();
+                dismiss();
             } else if (Objects.equals(userInput,"list")) {
                 tasks = display(tasks,counter);
             } else if (userInput.contains("mark") || userInput.contains("unmark")) {
-                tasks = mark_unmark(userInput,tasks);
+                tasks = updateStatus(userInput,tasks);
             } else{
                 counter++;
                 tasks = add(userInput,counter,tasks); //updating the task variable
@@ -32,7 +32,7 @@ public class Shamit {
         System.out.println("Hello! I'm "+ name + "\nHow can I help you?");
     }
 
-    public static void bye(){
+    public static void dismiss(){
         System.out.println("Bye, please come again!");
     }
 
@@ -50,19 +50,19 @@ public class Shamit {
         return tasks;
     }
 
-    public static Task[] mark_unmark(String userInput, Task[] tasks){
+    public static Task[] updateStatus(String userInput, Task[] tasks){
 //        System.out.println("The user entered either mark or unmark");
         int length = userInput.length(); //this is how long the input is. Last character of this has to be the task number
         char num = userInput.charAt(length-1);
         int number = Character.getNumericValue(num); //this is the number of the task the user is going to mark/unmark
         if(userInput.contains("unmark")){
 //            System.out.println("User entered unmark");
-            tasks[number-1].unmark_as_done();
+            tasks[number-1].unmarkDone();
             System.out.println("Ok, I have marked this task as undone: [" + tasks[number-1].getStatusIcon() + "] " + tasks[number-1].description);
         }
         else{
 //            System.out.println("User entered mark");
-            tasks[number-1].mark_as_done();
+            tasks[number-1].markDone();
             System.out.println("Ok, I have marked this task as done: [" + tasks[number-1].getStatusIcon() + "] " + tasks[number-1].description);
         }
         return tasks;

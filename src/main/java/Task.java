@@ -11,13 +11,11 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void mark_as_done(){ //use for mark statements
+    public void markDone(){ //use for mark statements
         this.isDone = true;
     }
 
-    public void unmark_as_done(){ //use for unmark statements
+    public void unmarkDone(){ //use for unmark statements
         this.isDone = false;
     }
-
-    //...
 }
