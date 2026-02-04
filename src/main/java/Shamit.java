@@ -4,7 +4,7 @@ public class Shamit {
     public static void main(String[] args) {
         greet();
         boolean isEnd = false; //this will be true when user types bye
-        String[] tasks = new String[10]; //initialised to a 5 length array first, will need to monitor while adding tasks
+        String[] tasks = new String[100]; //following assumption that there will not be more than 100 tasks
         String userInput = "";
         int counter = 0; //totals the number of items added to the list
         while(!isEnd){
@@ -35,19 +35,10 @@ public class Shamit {
     }
 
     public static String[] add(String content, String[] tasks,int counter){
-        int size = tasks.length;
-        if(counter > size){ //this means that the array is full, and we need to make a new bigger array
-            String[] newArray = new String[size*2]; //creating twice the original size
-            for(int j = 0; j<size; j++){
-                newArray[j] = tasks[j]; //duplicating old Array's values inside new array
-            }
-            tasks = newArray; //changing the tasks array into the new bigger array
-        }
-
         int index = counter - 1; //2nd item will be first index in the array.
         tasks[index] = content; //adding the task inside the array.
-
-        tasks = display(tasks,counter);
+        System.out.println("I have added the item: " + content);
+//        tasks = display(tasks,counter);
         return tasks;
     }
     public static String[] display(String[] tasks, int counter){
