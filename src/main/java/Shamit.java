@@ -38,14 +38,42 @@ public class Shamit {
 
     public static Task[] add(String userInput,int counter, Task[] tasks){
         int index = counter-1; //this is the index in which the Task object should be stored
-        tasks[index] = new Task(userInput);
-        System.out.println("I have added the item : " + tasks[index].description);
+//        tasks[index] = new Task(userInput);
+        if(userInput.contains("deadline")){//this means we need to use the deadline class
+            String description = "";
+            String by = "";
+            boolean reachedBy = false;
+            for(int i = 9;i<userInput.length();i++){//start with i=9 because thats the length of the word 'deadline'
+                if(userInput.charAt(i) == '/'){
+                    reachedBy = true;
+                    i = i+3;
+                }
+
+                if(!reachedBy){
+                    description = description + userInput.charAt(i);
+                } else{
+                    by = by + userInput.charAt(i);
+                }
+            }
+            tasks[index] = new Deadline(description,by);
+//            System.out.println("I have added the deadline: " + tasks[index].toString());
+        } else if (userInput.contains("todo")) {
+            String description = "";
+            String command = "todo";
+            int startingIndex = command.length()+1;
+            for(int i = startingIndex; i <userInput.length();i++){
+                description = description + userInput.charAt(i);
+            }
+            tasks[index] = new ToDo(description);
+        }
+
+        System.out.println("Got it! I have now added the task: " + tasks[index].toString() + "\nNow you have " + counter + " tasks in the list");
         return tasks;
     }
     public static Task[] display(Task[] tasks, int counter){
         for(int i = 0; i<counter;i++){
             int number = i+1; //the list of numbers will be index+1. For eg, task 1 will be index 0
-            System.out.println("" + number + ".[" + tasks[i].getStatusIcon() + "] " + tasks[i].description);
+            System.out.println("" + number + "."+ tasks[i].toString());
         }
         return tasks;
     }
