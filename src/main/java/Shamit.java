@@ -65,6 +65,35 @@ public class Shamit {
                 description = description + userInput.charAt(i);
             }
             tasks[index] = new ToDo(description);
+        } else if (userInput.contains("event")) {
+            String command = "event";
+            int startingIndex = command.length(); //this is where we start iterating from
+            String description = "";
+            String from = "";
+            String to = "";
+            boolean reachedFrom = false;
+            boolean reachedTo = false;
+
+            for(int i = startingIndex; i<userInput.length();i++){
+                if(!reachedFrom && !reachedTo && userInput.charAt(i)=='/'){//this means that the first / is reached
+                    reachedFrom = true;
+                    i = i+5; //because of the 'from'
+//                    continue;
+                }else if(reachedFrom && !reachedTo && userInput.charAt(i)=='/'){//this means that the second / is reached
+                    reachedTo = true;
+                    i = i+3; //because of the 'to'
+//                    continue;
+                }
+
+                if(!reachedFrom && !reachedTo){
+                    description = description + userInput.charAt(i);
+                } else if (reachedFrom && !reachedTo) {
+                    from = from + userInput.charAt(i);
+                } else if (reachedFrom && reachedTo) {
+                    to = to + userInput.charAt(i);
+                }
+            }
+            tasks[index] = new Event(description,from,to);
         }
 
         System.out.println("Got it! I have now added the task: " + tasks[index].toString() + "\nNow you have " + counter + " tasks in the list");
@@ -86,12 +115,12 @@ public class Shamit {
         if(userInput.contains("unmark")){
 //            System.out.println("User entered unmark");
             tasks[number-1].unmarkDone();
-            System.out.println("Ok, I have marked this task as undone: [" + tasks[number-1].getStatusIcon() + "] " + tasks[number-1].description);
+            System.out.println("Ok, I have marked this task as undone: " + tasks[number-1].toString());
         }
         else{
 //            System.out.println("User entered mark");
             tasks[number-1].markDone();
-            System.out.println("Ok, I have marked this task as done: [" + tasks[number-1].getStatusIcon() + "] " + tasks[number-1].description);
+            System.out.println("Ok, I have marked this task as done: " + tasks[number-1].toString());
         }
         return tasks;
     }
