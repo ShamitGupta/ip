@@ -7,7 +7,7 @@ public class Shamit {
         int counter = 0; //counts the number of tasks
         boolean isEnd = false; //this will be true when user types bye
         String userInput = "";
-        while(!isEnd){
+        while( !isEnd ){
             Scanner obj = new Scanner(System.in);
             userInput = obj.nextLine();
 
@@ -37,7 +37,7 @@ public class Shamit {
     }
 
     public static Task[] add(String userInput,int counter, Task[] tasks){
-        int index = counter-1; //this is the index in which the Task object should be stored
+        int index = counter - 1; //this is the index in which the Task object should be stored
 //        tasks[index] = new Task(userInput);
         if(userInput.contains("deadline")){//this means we need to use the deadline class
             String description = "";
@@ -46,7 +46,7 @@ public class Shamit {
             for(int i = 9;i<userInput.length();i++){//start with i=9 because thats the length of the word 'deadline'
                 if(userInput.charAt(i) == '/'){
                     reachedBy = true;
-                    i = i+3;
+                    i += 3;
                 }
 
                 if(!reachedBy){
@@ -74,8 +74,8 @@ public class Shamit {
             boolean reachedFrom = false;
             boolean reachedTo = false;
 
-            for(int i = startingIndex; i<userInput.length();i++){
-                if(!reachedFrom && !reachedTo && userInput.charAt(i)=='/'){//this means that the first / is reached
+            for( int i = startingIndex; i < userInput.length(); i++){
+                if( !reachedFrom && !reachedTo && userInput.charAt(i)=='/' ){//this means that the first / is reached
                     reachedFrom = true;
                     i = i+5; //because of the 'from'
 //                    continue;
