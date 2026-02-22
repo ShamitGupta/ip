@@ -16,7 +16,7 @@ public class Shamit {
     public static void main(String[] args) {
         greet();
 
-        // Changed from Task[] to ArrayList<Task>
+
         ArrayList<Task> tasks = loadTasks();
         boolean isEnd = false;
         Scanner obj = new Scanner(System.in);
