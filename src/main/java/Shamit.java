@@ -36,7 +36,9 @@ public class Shamit {
                 } else if (userInput.startsWith("delete")) {
                     deleteTask(userInput, tasks);
                     saveTasks(tasks);
-                } else {
+                } else if (userInput.startsWith("find")){
+                    findTasks(userInput, tasks);
+                }else {
                     addTask(userInput, tasks);
                     saveTasks(tasks);
                 }
@@ -96,6 +98,33 @@ public class Shamit {
             System.out.println("Error reading the save file.");
         }
         return loadedTasks;
+    }
+
+    /**
+     * Finds and displays tasks that contain the given keyword in their description.
+     */
+    public static void findTasks(String userInput, ArrayList<Task> tasks) throws ShamitException {
+        if (userInput.trim().equals("find")) {
+            throw new ShamitException("Please specify a keyword to search for!");
+        }
+
+        String keyword = userInput.substring(5).trim();
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.toString().contains(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+
+        if (matchingTasks.isEmpty()) {
+            System.out.println("No matching tasks found in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                System.out.println((i + 1) + "." + matchingTasks.get(i));
+            }
+        }
     }
 
     public static void greet(){
@@ -201,3 +230,5 @@ public class Shamit {
         }
     }
 }
+
+//I have also created Jar file
