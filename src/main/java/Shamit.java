@@ -90,7 +90,7 @@ public class Shamit {
     }
 
     public static void main(String[] args) {
-        // Start the application using the data folder path
+        // Starting the application using the data folders path
         new Shamit("data/shamit.txt").run();
     }
 }
