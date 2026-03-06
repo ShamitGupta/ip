@@ -1,4 +1,13 @@
+/**
+ * Handles the interpretation of user input strings into commands and data.
+ */
 public class Parser {
+
+    /**
+     * Extracts the first word from the user input to identify the command.
+     * @param fullCommand The raw input string.
+     * @return The first word of the command in lowercase.
+     */
     public static String getCommandWord(String fullCommand) {
         return fullCommand.split(" ")[0];
     }
@@ -23,6 +32,12 @@ public class Parser {
         return fullCommand.substring(5).trim();
     }
 
+    /**
+     * Converts a user command into a specific Task object.
+     * @param fullCommand is the raw input for todo, deadline, or event.
+     * @return A subclass of Task based on the input.
+     * @throws ShamitException If the input format is missing required fields.
+     */
     public static Task parseTask(String fullCommand) throws ShamitException {
         if (fullCommand.startsWith("todo")) {
             if (fullCommand.trim().equals("todo")) throw new ShamitException("Todo description cannot be empty.");

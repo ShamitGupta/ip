@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Manages reading and writing tasks to the local file system.
+ */
 public class Storage {
     private String filePath;
 
@@ -13,7 +16,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
-
+    /**
+     * Reads the task file and reconstructs the TaskList.
+     * @return A list of tasks populated from the file.
+     * @throws ShamitException If the file format is corrupted.
+     */
     public ArrayList<Task> load() throws ShamitException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File f = new File(filePath);
@@ -53,7 +60,11 @@ public class Storage {
         return loadedTasks;
     }
 
-
+    /**
+     * Writes the current list of tasks to the text file.
+     * @param tasks The list of tasks to be saved.
+     * @throws IOException If the file cannot be written to disk.
+     */
     public void save(TaskList tasks) throws IOException {
         File f = new File(filePath);
         File directory = f.getParentFile();

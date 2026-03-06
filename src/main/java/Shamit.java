@@ -1,11 +1,18 @@
 import java.io.IOException;
-
+/**
+ * Represents the main entry point and controller for the Shamit chatbot.
+ * Orchestrates the UI, storage, and task list logic.
+ */
 public class Shamit {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initializes the chatbot and attempts to load tasks from storage.
+     * @param filePath The path where the data file is stored.
+     */
     public Shamit(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +26,9 @@ public class Shamit {
         }
     }
 
+    /**
+     * Runs the main execution loop for the chatbot until the user exits.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -60,6 +70,11 @@ public class Shamit {
 
     //Helper Methods
 
+    /**
+     * Handles the logic for adding a new task to the list.
+     * @param fullCommand The raw user input string.
+     * @throws ShamitException If the task format is invalid.
+     */
     private void handleAddTask(String fullCommand) throws ShamitException {
         Task newTask = Parser.parseTask(fullCommand);
         tasks.addTask(newTask);
