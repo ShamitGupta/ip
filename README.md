@@ -1,26 +1,69 @@
-# Shamit project template
+# Shamit User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+**Shamit** is a powerful, yet simple command-line task manager that helps you keep track of your daily obligations. It categorizes tasks into three types and ensures your data is persisted safely between sessions.
 
-## Setting up in Intellij
+---
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+## Quick Start
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Shamit.java` file, right-click it, and choose `Run Shamit.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+1.  **Requirement**: Ensure you have **Java 17** installed.
+2.  **Download**: Get the latest `Shamit.jar` from our the GitHub releases.
+3.  **Run**: Open your terminal, navigate to the folder where the JAR is located, and run:
+    `java -jar Shamit.jar`
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+---
+
+## Features
+
+### 1. Adding a To-Do: `todo`
+Adds a basic task to your list without any specific time requirements.
+* **Format**: `todo DESCRIPTION`
+* **Example**: `todo read a book`
+
+### 2. Adding a Deadline: `deadline`
+Adds a task that must be completed by a specific date or time.
+* **Format**: `deadline DESCRIPTION /by DATE`
+* **Example**: `deadline return book /by Sunday`
+
+### 3. Adding an Event: `event`
+Adds a task that occurs during a specific time period.
+* **Format**: `event DESCRIPTION /from START /to END`
+* **Example**: `event project meeting /from Mon 2pm /to 4pm`
+
+### 4. Listing all tasks: `list`
+Displays every task currently stored in your list, showing its status (Done/Not Done), task type, and any associated dates.
+* **Format**: `list`
+
+### 5. Marking/Unmarking tasks: `mark` / `unmark`
+Updates the status of an existing task to completed or incomplete.
+* **Format**: `mark INDEX` or `unmark INDEX`
+* **Example**: `mark 1` (Marks the first task in the list as done)
+
+### 6. Finding tasks: `find`
+Searches for tasks that contain a specific keyword in their description.
+* **Format**: `find KEYWORD`
+* **Example**: `find book`
+
+### 7. Deleting a task: `delete`
+Removes a task from the list permanently.
+* **Format**: `delete INDEX`
+* **Example**: `delete 3`
+
+### 8. Exiting: `bye`
+Safely exits the program. Your list is automatically saved to the hard drive.
+* **Format**: `bye`
+
+---
+
+## Data Management
+Shamit automatically saves all your changes to a file located at `./data/shamit.txt` relative to the application's folder. This path is OS-independent and ensures your data moves with your application.
+
+---
+
+## FAQ
+
+**Q: Where is my data saved?**
+**A**: It is saved in a folder named `data` created in the same directory as your JAR file.
+
+**Q: Can I search for multiple words?**
+**A**: Yes, the `find` command will look for the exact sequence of characters you provide.
